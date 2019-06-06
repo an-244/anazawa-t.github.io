@@ -3,7 +3,7 @@ layout: default
 ---
 
 # Web test
-<font color="Red">フォントテスト</font>
+<font color="Red", size="10pt">フォントテスト</font>
 
 * リスト1
   * リスト1-1
