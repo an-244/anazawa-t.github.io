@@ -3,15 +3,10 @@ layout: default
 ---
 
 # Web test
-
-%%{size:14pt}**<font color="Red">フォントテスト</font>**
-
-
+**<font color="Red">フォントテスト</font>**
 * リスト1
   * リスト1-1
   * リスト1-2
-
-
 1. 番号付きリスト
 2. テスト
     1. テスト
