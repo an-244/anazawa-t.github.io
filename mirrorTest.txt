@@ -1,0 +1,14 @@
+// ミラーしたいリポジトリをクローン
+// 既に使用しているリポジトリ
+git clone --mirror https://github.com/$USER/$REPOSITORY1.git
+
+// クローンしたリポジトリに移動
+// HEAD branches config description hooks info objects packed-refs refs が作成される
+cd $REPOSITORY.git
+
+// ローカルをリモートにミラーする
+git remote add --mirror=push test https://github.com/$USER/$REPOSITORY2.git
+
+// ミラーするリポジトリをpush
+// testは上の --mirror=push test ・・・のtestを指定
+git push test
