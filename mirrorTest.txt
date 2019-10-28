@@ -1,33 +1,41 @@
+// ミラーオプションの使用
 // ミラーしたいリポジトリをクローン
-// 既に使用しているリポジトリ
-git clone --mirror https://github.com/$USER/$REPOSITORY1.git
+$ git clone --mirror https://github.com/${USER1}/${REPOSITORY}.git
 
 // クローンしたリポジトリに移動
 // HEAD branches config description hooks info objects packed-refs refs が作成される
-cd $REPOSITORY.git
+$ cd ${REPOSITORY}.git
 
 // ローカルをリモートにミラーする
-git remote add --mirror=push test https://github.com/$USER/$REPOSITORY2.git
+$ git remote add --mirror=push test https://github.com/${USER2}/${REPOSITORY}.git
 
 // ミラーするリポジトリをpush
 // testは上の --mirror=push test ・・・のtestを指定
 // プルリクを保持するためのrefsはreadonlyのため上書きが拒否される（更新に問題はない）
-
+git remote update
 git push test
 
-Username for 'https://github.com': ${USER}
-Password for 'https://${USER}@github.com': 
+Username for 'https://github.com': ${USER2}
+Password for 'https://${USER2}@github.com': 
 Counting objects: 3, done.
 Delta compression using up to 8 threads.
 Compressing objects: 100% (2/2), done.
 Writing objects: 100% (3/3), 677 bytes | 0 bytes/s, done.
 Total 3 (delta 1), reused 0 (delta 0)
 remote: Resolving deltas: 100% (1/1), completed with 1 local object.
-To https://github.com/${USER}/${REPOSITORY}.git
+To https://github.com/${USER2}/${REPOSITORY}.git
    d1fb722..b68418c  master -> master
  ! [remote rejected] refs/pull/1/head -> refs/pull/1/head (deny updating a hidden ref)
-error: failed to push some refs to 'https://github.com/${USER}/${REPOSITORY}.git'
+error: failed to push some refs to 'https://github.com/${USER2}/${REPOSITORY}.git'
 
 
 // config で設定の確認可能
 gedit config &
+
+// bareオプションの使用
+git clone --bare --config remote.origin.fetch='+refs/heads/*:refs/heads/*' --config remote.origin.mirror=true https://github.com/${USER1}/${REPOSITORY}.git
+cd ${REPOSITORY}.git
+git remote add --mirror=push test https://github.com/${USER2}/${REPOSITORY}.git
+
+git remote update
+git push test
