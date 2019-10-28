@@ -11,4 +11,23 @@ git remote add --mirror=push test https://github.com/$USER/$REPOSITORY2.git
 
 // ミラーするリポジトリをpush
 // testは上の --mirror=push test ・・・のtestを指定
+// プルリクを保持するためのrefsはreadonlyのため上書きが拒否される（更新に問題はない）
+
 git push test
+
+Username for 'https://github.com': ${USER}
+Password for 'https://${USER}@github.com': 
+Counting objects: 3, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 677 bytes | 0 bytes/s, done.
+Total 3 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/${USER}/${REPOSITORY}.git
+   d1fb722..b68418c  master -> master
+ ! [remote rejected] refs/pull/1/head -> refs/pull/1/head (deny updating a hidden ref)
+error: failed to push some refs to 'https://github.com/${USER}/${REPOSITORY}.git'
+
+
+// config で設定の確認可能
+gedit config &
